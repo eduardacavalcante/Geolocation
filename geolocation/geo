@@ -1,0 +1,25 @@
+import requests 
+  
+location = "53.345995+-6.258893"
+
+def openCage(lat, long):
+    # api-endpoint 
+    URL = "https://api.opencagedata.com/geocode/v1/json"
+
+    # defining a params dict for the parameters to be sent to the API 
+    PARAMS = {'q': str(lat) + "+ " + str(long),
+          'key':'22298331bc4e459e8c63f7703aeb1ecd'} 
+  
+    # sending get request and saving the response as response object 
+    r = requests.get(url = URL, params=PARAMS) 
+
+    # extracting data in json format 
+    data = r.json() 
+
+    county = data['results'][0]['components']['county']
+    country= data['results'][0]['components']['country']
+    print (county,"-", country)
+    
+    
+
+openCage(53.345995, -6.468893)
